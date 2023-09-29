@@ -2,8 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div class="bg-slate-800 w-full h-28 md:h-36 mt-12 flex flex-col items-center justify-center md:flex-row md:justify-around md:px-20">
-      <div class="py-2.5 hidden md:block md:order-last">
+    <div class="bg-slate-800 w-full h-28 sm:h-36 mt-12 flex flex-col items-center justify-center sm:flex-row sm:justify-around sm:px-20">
+      <div class="py-2.5 hidden sm:block sm:order-last">
         <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full mr-4">
           Login
         </button>

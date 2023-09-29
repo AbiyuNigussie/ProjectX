@@ -55,18 +55,18 @@ const NavBar = () => {
                 </div>
               </div>
               <div className="flex gap-3 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <Link to="/user/login">
+                <Link to="/user/login" target="_blank">
                   <button
                     type="button"
-                    className="relative border-none rounded-md text-blue-500 py-2 px-3 hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    className="relative border-none outline-none rounded-md text-blue-500 py-2 px-3 hover:text-black hover:bg-gray-100  focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                   >
                     Login
                   </button>
                 </Link>
-                <Link to="/user/signup">
+                <Link to="/user/signup" target="_blank">
                   <button
                     type="button"
-                    className="relative hidden border-none rounded-md bg-blue-500 text-white py-2 px-3 hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 sm:block"
+                    className="relative hidden border-none outline-none rounded-md bg-blue-500 text-white py-2 px-3 hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 sm:block"
                   >
                     Sign Up for Free
                   </button>

@@ -1,7 +1,7 @@
 import React from "react";
 const Header = () => {
   return (
-    <header className="h-screen md:max-h-96 headerImage">
+    <header className="h-screen sm:max-h-96 headerImage">
       <div className="h-full bg-black/50 flex items-center text-left text-white">
         <div className="flex flex-col gap-4 mx-5 md:mx-16">
           <span className="text-2xl">EVENTS, MEETUPS & CONFERENCES</span>

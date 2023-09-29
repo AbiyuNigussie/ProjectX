@@ -38,17 +38,17 @@ const HomePage = () => {
     <>
       <Header />
       <main>
-        <div class="min-h-full flex flex-col md:px-5">
+        <div class="min-h-full flex flex-col sm:px-5">
           <div class="flex items-center justify-between">
             <p class="py-5 px-5 text-2xl text-gray-600">Trending Events</p>
-            <a href="#" class="hidden md:block hover:text-blue-500">
+            <a href="#" class="hidden sm:block hover:text-blue-500">
               <p class="text-sm flex items-center">
                 See more <ChevronRightIcon class="h-4" />
               </p>
             </a>
           </div>
           <div class="flex justify-center">
-            <div class="flex flex-wrap md:flex-row md:gap-5">
+            <div class="flex flex-wrap sm:flex-row sm:gap-5">
               {lists && lists.map((each, key) => <Card item={each} />)}
             </div>
           </div>
