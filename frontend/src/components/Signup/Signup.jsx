@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import apiService from "../../api/apiServices";
 const Signup = () => {
   // const [formData, setFormData] = useState({});
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
@@ -18,7 +18,14 @@ const Signup = () => {
   // };
 
   const onSubmit = (data) => {
-    console.log(data);
+    apiService
+      .post("api/signup", data)
+      .then((response) => {
+        console.log("Data sent successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (
