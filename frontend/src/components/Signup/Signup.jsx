@@ -1,45 +1,46 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import apiService from "../../api/apiServices";
-const Signup = () => {
-  // const [formData, setFormData] = useState({});
+import { Link } from "react-router-dom";
 
+const Signup = (props) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  // const handleChange = (event) => {
-  //   const name = event.taget.name;
-  //   const value = event.target.value;
-  //   setFormData((inputs) => ({ ...inputs, [name]: value }));
-  // };
-
-  const onSubmit = (data) => {
-    apiService
-      .post("api/signup", data)
-      .then((response) => {
-        console.log("Data sent successfully:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  };
-
   return (
     <div className="flex-1 md:max-w-sm">
       <div className="px-8 py-6 mt-4 text-left bg-white rounded-lg md:shadow-lg">
         <h1 className="text-2xl font-semibold mb-6  text-center ">Sign Up</h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(props.onSubmit)}>
+          <div className="mb-4">
+            <label className="block text-black">User Name</label>
+            <input
+              type="text"
+              id="username"
+              name="userName"
+              {...register("userName", {
+                required: "* Required",
+                maxLength: {
+                  value: 30,
+                  message: "* Maximum 30 characters allowed.",
+                },
+              })}
+              className="w-full bg-white border border-gray-100 rounded py-2 px-3 focus:outline-none focus:border-blue-500"
+            />
+            {errors.userName && (
+              <span className="text-sm text-red-500">
+                {errors.userName.message}
+              </span>
+            )}
+          </div>
           <div className="mb-4">
             <label className="block text-black">First Name</label>
             <input
               type="text"
               id="fname"
               name="firstName"
-              // onChange={handleChange}
               {...register("firstName", {
                 required: "* Required",
                 maxLength: {
@@ -61,7 +62,6 @@ const Signup = () => {
               type="text"
               id="lname"
               name="lastName"
-              // onChange={handleChange}
               {...register("lastName", {
                 required: "* Required",
                 maxLength: {
@@ -83,7 +83,6 @@ const Signup = () => {
               type="text"
               id="email"
               name="email"
-              // onChange={handleChange}
               {...register("email", {
                 required: "* Required",
                 pattern: {
@@ -105,7 +104,6 @@ const Signup = () => {
               type="password"
               id="password"
               name="password"
-              // onChange={handleChange}
               {...register("password", { required: "*Required" })}
               className="w-full bg-white border border-gray-100 rounded py-2 px-3 focus:outline-none focus:border-blue-500"
             />
@@ -121,9 +119,9 @@ const Signup = () => {
               <input
                 type="checkbox"
                 className="form-checkbox"
-                {...register("terms", {
-                  required: "Please accept the terms.",
-                })}
+                // {...register("terms", {
+                //   required: "Please accept the terms.",
+                // })}
               />
               <span className="ml-2 text-gray-400">
                 I agree to the{" "}
