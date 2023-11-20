@@ -4,6 +4,7 @@ import NavBar from "./components/Layout/NavBar";
 import HomePage from "./pages/Home/HomePage";
 import SignUpPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import Verification from "./pages/SignupPage/Verification";
 const App = () => {
   return (
     <div className="App">
@@ -28,6 +29,7 @@ const App = () => {
         />
         <Route path="/user/signup" element={<SignUpPage />} />
         <Route path="/user/login" element={<LoginPage />} />
+        <Route path="/user/verify/:token" element={<Verification />} />
       </Routes>
     </div>
   );
