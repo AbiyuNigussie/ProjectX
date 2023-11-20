@@ -11,6 +11,9 @@ const apiService = {
   post: (endpoint, data) => {
     return api.post(endpoint, data);
   },
+  get: (endpoint) => {
+    return api.get(endpoint);
+  },
 };
 
 export default apiService;
