@@ -38,18 +38,19 @@ const HomePage = () => {
     <>
       <Header />
       <main>
-        <div class="min-h-full flex flex-col sm:px-5">
-          <div class="flex items-center justify-between">
-            <p class="py-5 px-5 text-2xl text-gray-600">Trending Events</p>
-            <a href="#" class="hidden sm:block hover:text-blue-500">
-              <p class="text-sm flex items-center">
-                See more <ChevronRightIcon class="h-4" />
+        <div className="min-h-full flex flex-col sm:px-5">
+          <div className="flex items-center justify-between">
+            <p className="py-5 px-5 text-2xl text-gray-600">Trending Events</p>
+            <a href="#" className="hidden sm:block hover:text-blue-500">
+              <p className="text-sm flex items-center">
+                See more <ChevronRightIcon className="h-4" />
               </p>
             </a>
           </div>
-          <div class="flex justify-center">
-            <div class="flex flex-wrap sm:flex-row sm:gap-5">
-              {lists && lists.map((each, key) => <Card item={each} />)}
+          <div className="flex justify-center">
+            <div className="flex flex-wrap sm:flex-row sm:gap-5">
+              {lists &&
+                lists.map((each, key) => <Card item={each} key={key} />)}
             </div>
           </div>
         </div>

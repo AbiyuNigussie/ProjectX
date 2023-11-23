@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { IoMdClose } from "react-icons/io";
+
 import apiService from "../../api/apiServices";
+import UserContext from "../../contexts/UserContext";
 const Login = () => {
-  // const [inputs, setInputs] = useState({});
-
-  // const handleChange = (event) => {
-  //   const name = event.target.name;
-  //   const value = event.target.value;
-
-  //   setInputs((values) => ({ ...values, [name]: value }));
-  // };
-
+  const { user, login, logout } = useContext(UserContext);
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -20,14 +17,20 @@ const Login = () => {
 
   const onSubmit = (data) => {
     apiService
-      .post("api/login", data)
+      .post("api/user/login", data)
       .then((response) => {
-        console.log("Data sent successfully:", response.data);
+        login(response.data);
+        navigate("/");
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error(error);
+        setErrorMessage(error.response.data);
       });
   };
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return (
     <div className="flex-1 md:max-w-sm px-8 py-6 mt-4 text-left bg-white rounded-lg md:shadow-lg">
@@ -72,6 +75,12 @@ const Login = () => {
               </span>
             )}
           </div>
+          {errorMessage && (
+            <div className="bg-red-100 p-3 rounded-md mt-3 flex justify-between items-center cursor-pointer">
+              <span>{errorMessage}</span>
+              <IoMdClose onClick={() => setErrorMessage("")} />
+            </div>
+          )}
           <div className="flex items-baseline justify-between">
             <button
               className="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900"
