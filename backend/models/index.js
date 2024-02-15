@@ -1,6 +1,8 @@
 const dbConfig = require("../db.config");
 
 const { Sequelize } = require("sequelize");
+const UserCredential = require("./UserCredential");
+const User = require("./User");
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
@@ -13,4 +15,7 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   },
 });
 
-module.exports = { sequelize };
+// UserCredential.hasOne(User);
+// User.belongsTo(UserCredential);
+
+module.exports = sequelize;

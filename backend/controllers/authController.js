@@ -8,6 +8,7 @@ const User = require("../models/User");
 
 const signupValidation = require("../validation/signupValidation");
 const loginValidation = require("../validation/loginValidation");
+const { use } = require("../routes/profile");
 
 const signup = async (req, res) => {
   const payload = req.body;
@@ -65,19 +66,16 @@ const signin = async (req, res) => {
   const validPass = await bcrypt.compare(payload.password, user.password);
   if (!validPass) return res.status(400).send("Incorrect email or password.");
 
-  const token = jwt.sign({ id: user.id }, process.env.TOKENSECRET);
-  res.json({
-    user: {
-      userId: user._id,
-      username: user.useName,
-      email: user.email,
-      profile: {
-        firstName: user.firstName,
-        lastName: user.lastName,
-        accessToken: token,
-      },
+  const token = jwt.sign(
+    {
+      firstName: payload.firstName,
+      lastName: payload.lastName,
+      userName: payload.userName,
+      email: payload.email,
     },
-  });
+    process.env.TOKENSECRET
+  );
+  res.header("auth-token", token).send(token);
 };
 
 const verify = async (req, res) => {

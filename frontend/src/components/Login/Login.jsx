@@ -17,14 +17,16 @@ const Login = () => {
 
   const onSubmit = (data) => {
     apiService
-      .post("api/user/login", data)
+      .post("api/Auth/Authentication", data)
       .then((response) => {
         login(response.data);
         navigate("/");
       })
       .catch((error) => {
-        console.error(error);
-        setErrorMessage(error.response.data);
+        console.error(error.response.data.errorMessage.errors[0].errorMessage);
+        setErrorMessage(
+          error.response.data.errorMessage.errors[0].errorMessage
+        );
       });
   };
 
@@ -38,7 +40,7 @@ const Login = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mt-4">
           <div>
-            <label className="block">Email</label>
+            <label className="block">Email/Username</label>
             <input
               name="email"
               type="text"

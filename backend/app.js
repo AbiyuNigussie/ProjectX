@@ -4,7 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 // Import Routes
 const authRoute = require("./routes/auth");
-
+const profileRoute = require("./routes/profile");
 const app = express();
 // console.log(process.env.TOKENSECRET);
 
@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 // Route MiddleWares
 app.use("/api/user/", authRoute);
+app.use("/api/user/", profileRoute);
 
 // Route
 app.get("/api", (req, res) => {

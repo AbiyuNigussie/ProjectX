@@ -1,12 +1,13 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useState, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
+import apiService from "../../api/apiServices";
 
 const navigation = [
-  { name: "Home", href: "#", current: true },
-  { name: "Find Events", href: "#", current: false },
+  { name: "Home", href: "/home", current: true },
+  { name: "Find Events", href: "/events", current: false },
   { name: "Create Events", href: "#", current: false },
   { name: "Help", href: "#", current: false },
 ];
@@ -16,7 +17,10 @@ const classNames = (...classes) => {
 };
 
 const NavBar = () => {
-  const { user, login, logout } = useContext(UserContext);
+  const { token, userId, isAuthenticated, logout } = useContext(UserContext);
+  const { userProfile, setUserProfile } = useState({});
+
+  const onNavClick = (event) => {};
   return (
     <Disclosure as="nav" className="bg-white sticky top-0 w-full z-10">
       {({ open }) => (
@@ -49,6 +53,7 @@ const NavBar = () => {
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
                         aria-current={item.current ? "page" : undefined}
+                        onClick={onNavClick}
                       >
                         {item.name}
                       </a>
@@ -56,7 +61,7 @@ const NavBar = () => {
                   </div>
                 </div>
               </div>
-              {user ? (
+              {isAuthenticated ? (
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -81,15 +86,15 @@ const NavBar = () => {
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <Link
+                            to={`/user-profile/${userId}`}
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
                             Your Profile
-                          </a>
+                          </Link>
                         )}
                       </Menu.Item>
                       <Menu.Item>

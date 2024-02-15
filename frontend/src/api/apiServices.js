@@ -1,10 +1,15 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:3030";
+const API_BASE_URL = "https://localhost:7160";
 
+const userToken = localStorage.getItem("token");
 const api = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: userToken ? `Bearer ${userToken.replace(/['"]+/g, "")}` : "",
+  },
 });
 
 const apiService = {
