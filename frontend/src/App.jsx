@@ -8,7 +8,8 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import Verification from "./pages/SignupPage/Verification";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import UserContext from "./contexts/UserContext";
-import EventsPage from "./pages/EventsPage/EventsPage";
+import EventsPage from "./pages/EventsPage/FindEventsPage";
+import CreateEventPage from "./pages/EventsPage/CreateEventPage";
 
 const App = () => {
   const { isAuthenticated } = useContext(UserContext);
@@ -54,6 +55,14 @@ const App = () => {
           element={
             <Layout>
               <EventsPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/create-event"
+          element={
+            <Layout>
+              <CreateEventPage />
             </Layout>
           }
         />

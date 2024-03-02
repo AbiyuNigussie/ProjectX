@@ -8,7 +8,7 @@ import apiService from "../../api/apiServices";
 const navigation = [
   { name: "Home", href: "/home", current: true },
   { name: "Find Events", href: "/events", current: false },
-  { name: "Create Events", href: "#", current: false },
+  { name: "Create Events", href: "/create-event", current: false },
   { name: "Help", href: "#", current: false },
 ];
 

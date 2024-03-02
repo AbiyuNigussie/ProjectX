@@ -3,7 +3,7 @@ import { HeartIcon } from "@heroicons/react/24/outline";
 
 const Card = (props) => {
   return (
-    <div className="sm:transition sm:ease-in-out  sm:hover:shadow-lg w-full pb-4 sm:max-w-[18rem] flex flex-col gap-5 bg-white border-solid border-x border-b rounded-b-lg rounded-t-xl">
+    <div className="sm:transition sm:ease-in-out  sm:hover:shadow-lg w-full pb-4 sm:max-w-[18rem] flex flex-col gap-5 border-solid border-x border-b rounded-b-lg rounded-t-xl">
       <div className="max-w-full h-52 sm:max-h-44 relative">
         <div className="sm:transition sm:ease-in-out  sm:hover:scale-110 text-xl p-3 sm:p-2 border rounded-full absolute right-4 bottom-[-10%] sm:right-2 bg-white shadow-md hover:shadow-md">
           <HeartIcon className="h-6 sm:h-5" />
