@@ -18,9 +18,23 @@ const classNames = (...classes) => {
 
 const NavBar = () => {
   const { token, userId, isAuthenticated, logout } = useContext(UserContext);
-  const { userProfile, setUserProfile } = useState({});
+  const [userProfile, setUserProfile] = useState({});
 
   const onNavClick = (event) => {};
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      apiService
+        .get(`api/profile/${userId}`)
+        .then((response) => {
+          setUserProfile(response.data);
+        })
+        .catch((error) => {
+          // Handle error
+          console.error("Error fetching user profile:", error);
+        });
+    }
+  }, [isAuthenticated, userId]);
   return (
     <Disclosure as="nav" className="bg-white sticky top-0 w-full z-10">
       {({ open }) => (
@@ -69,7 +83,7 @@ const NavBar = () => {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src={userProfile.profilePictureUrl}
                         alt=""
                       />
                     </Menu.Button>

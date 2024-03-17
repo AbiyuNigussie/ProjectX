@@ -30,10 +30,6 @@ const Login = () => {
       });
   };
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-
   return (
     <div className="flex-1 md:max-w-sm px-8 py-6 mt-4 text-left bg-white rounded-lg md:shadow-lg">
       <h3 className="text-2xl font-bold text-center">Login </h3>

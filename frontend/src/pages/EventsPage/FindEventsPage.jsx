@@ -166,8 +166,8 @@ const FindEventsPage = () => {
               <div className="mt-10 py-10 border-t border-gray-300">
                 <div className="flex gap-5 flex-wrap"></div>
               </div>
-              <div class="max-w-screen-xl mx-auto p-0 sm:p-10 md:p-16">
-                <div class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-5">
+              <div className="max-w-screen-xl mx-auto p-0 sm:p-10 md:p-16">
+                <div className="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-5">
                   {lists &&
                     lists.map((each, key) => <Card item={each} key={key} />)}
                 </div>
